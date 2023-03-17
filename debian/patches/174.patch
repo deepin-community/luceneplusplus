@@ -1,0 +1,46 @@
+From 8d82fd93b1e5531104d23a1496fddbd36e667a63 Mon Sep 17 00:00:00 2001
+From: Hillwood Yang <hillwood@opensuse.org>
+Date: Sun, 11 Jul 2021 21:16:47 +0800
+Subject: [PATCH 1/2] Fix src/contrib/CMakeLists.txt
+
+---
+ src/contrib/CMakeLists.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/contrib/CMakeLists.txt b/src/contrib/CMakeLists.txt
+index e582692a..065dd4e0 100644
+--- a/src/contrib/CMakeLists.txt
++++ b/src/contrib/CMakeLists.txt
+@@ -93,6 +93,6 @@ install(TARGETS lucene++-contrib
+ 
+ install(
+   FILES ${contrib_headers}
+-  LIBRARY DESTINATION "include/lucene++"
+-  LIBRARY DESTINATION "src/contrib/include"
++  DESTINATION "include/lucene++"
++  DESTINATION "src/contrib/include"
+   COMPONENT development-contrib)
+
+From a22b136a6c697b09ce613e5baafb0db8c87479ac Mon Sep 17 00:00:00 2001
+From: Hillwood Yang <hillwood@opensuse.org>
+Date: Mon, 12 Jul 2021 20:37:15 +0800
+Subject: [PATCH 2/2] Fix syntax in src/config/contrib/CMakeLists.txt: an
+ incorrect "{"
+
+---
+ src/config/contrib/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/config/contrib/CMakeLists.txt b/src/config/contrib/CMakeLists.txt
+index 6f1a264f..0dc66f26 100644
+--- a/src/config/contrib/CMakeLists.txt
++++ b/src/config/contrib/CMakeLists.txt
+@@ -9,7 +9,7 @@ if(NOT WIN32)
+   install(
+     FILES
+       "${CMAKE_CURRENT_BINARY_DIR}/liblucene++-contrib.pc"
+-    DESTINATION {${CMAKE_INSTALL_LIBDIR}/pkgconfig)
++    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+ endif()
+ 
+ 

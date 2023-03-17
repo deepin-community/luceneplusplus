@@ -1,0 +1,29 @@
+From 0739c90e4877f7192215595629a8dbfef243809b Mon Sep 17 00:00:00 2001
+From: Gong Heng <gongheng@uniontech.com>
+Date: Mon, 8 Mar 2021 20:59:03 +0800
+Subject: [PATCH] fix: fix a unit test error
+
+ChineseAnalyzer now supports numeric
+
+Log:
+Bug:
+---
+ .../analyzers/common/analysis/cn/ChineseTokenizerTest.cpp     | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/test/contrib/analyzers/common/analysis/cn/ChineseTokenizerTest.cpp b/src/test/contrib/analyzers/common/analysis/cn/ChineseTokenizerTest.cpp
+index f81d707f..7be338c2 100644
+--- a/src/test/contrib/analyzers/common/analysis/cn/ChineseTokenizerTest.cpp
++++ b/src/test/contrib/analyzers/common/analysis/cn/ChineseTokenizerTest.cpp
+@@ -115,9 +115,9 @@ TEST_F(ChineseTokenizerTest, testNumerics) {
+ 
+     checkAnalyzesTo(justTokenizer, UTF8_TO_STRING(input), newCollection<String>(UTF8_TO_STRING(token1), L"1234"));
+ 
+-    // in this case the ChineseAnalyzer (which applies ChineseFilter) will remove the numeric token.
++    // in this case the ChineseAnalyzer (which applies ChineseFilter) will not remove the numeric token.
+     AnalyzerPtr a = newLucene<ChineseAnalyzer>();
+-    checkAnalyzesTo(a, UTF8_TO_STRING(input), newCollection<String>(UTF8_TO_STRING(token1)));
++    checkAnalyzesTo(a, UTF8_TO_STRING(input), newCollection<String>(UTF8_TO_STRING(token1), L"1234"));
+ }
+ 
+ /// ChineseTokenizer tokenizes english similar to SimpleAnalyzer.

@@ -1,0 +1,38 @@
+Description: Disabling snowball for the moment.
+ As described in upstream issue #71 snowball is not used, moreover debian has its
+ specific library. For now is better to disable it, waiting for upstream suggestions.
+
+---
+Origin: debian
+Forwarded: https://github.com/luceneplusplus/LucenePlusPlus/issues/71
+Reviewed-By: Gianfranco Costamagna <costamagnagianfranco@yahoo.it>
+Last-Update: <2014-09-02>
+
+Index: lucene++/src/contrib/CMakeLists.txt
+===================================================================
+--- lucene++.orig/src/contrib/CMakeLists.txt	2015-01-30 23:44:24.137024356 +0100
++++ lucene++/src/contrib/CMakeLists.txt	2015-01-30 23:44:24.133024355 +0100
+@@ -21,10 +21,10 @@ file(GLOB_RECURSE contrib_sources
+   "memory/*.cpp"
+   "index/*.cpp"
+   "mevc/*.cpp"
+-  "snowball/*.cpp"
+-  "snowball/libstemmer_c/libstemmer/libstemmer_utf8.c"
+-  "snowball/libstemmer_c/src_c/*.c"
+-  "snowball/libstemmer_c/runtime/*.c"
++#  "snowball/*.cpp"
++#  "snowball/libstemmer_c/libstemmer/libstemmer_utf8.c"
++#  "snowball/libstemmer_c/src_c/*.c"
++#  "snowball/libstemmer_c/runtime/*.c"
+ )
+ 
+ file(GLOB_RECURSE contrib_headers
+@@ -46,7 +46,7 @@ target_include_directories(lucene++-contrib
+     $<BUILD_INTERFACE:${lucene++_BINARY_DIR}/include>
+     $<BUILD_INTERFACE:${lucene++_SOURCE_DIR}/include/lucene++>
+     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+-    $<BUILD_INTERFACE:${lucene++-contrib_SOURCE_DIR}/snowball/libstemmer_c/include>
++#    $<BUILD_INTERFACE:${lucene++-contrib_SOURCE_DIR}/snowball/libstemmer_c/include>
+     ${Boost_INCLUDE_DIRS}
+ )
+ 

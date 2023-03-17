@@ -1,0 +1,2 @@
+# G++5 ABI transition
+liblucene++-contrib0v5: package-name-doesnt-match-sonames liblucene++-contrib0

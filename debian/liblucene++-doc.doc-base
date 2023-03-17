@@ -1,0 +1,11 @@
+Document: lucene++
+Title: Lucene++ Manual
+Author: Alan Wright et al.
+Abstract:
+ Lucene++ is an up to date C++ port of the popular Java Lucene
+ library, a high-performance, full-featured text search engine.
+Section: Programming/C++
+
+Format: HTML
+Index: /usr/share/doc/liblucene++-doc/html/index.html
+Files: /usr/share/doc/liblucene++-doc/html/*.html

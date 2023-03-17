@@ -1,0 +1,47 @@
+From ad09039199eca46183f1c4794e531df62491bb48 Mon Sep 17 00:00:00 2001
+From: hillwoodroc <hillwoodroc@gmail.com>
+Date: Tue, 8 Jun 2021 14:58:54 +0800
+Subject: [PATCH] Fix headers install, contrib headers should be installed.
+
+---
+ src/contrib/CMakeLists.txt         |  3 +++
+ src/contrib/include/CMakeLists.txt | 11 +++++++++++
+ 2 files changed, 14 insertions(+)
+ create mode 100644 src/contrib/include/CMakeLists.txt
+
+diff --git a/src/contrib/CMakeLists.txt b/src/contrib/CMakeLists.txt
+index f22feef3..e582692a 100644
+--- a/src/contrib/CMakeLists.txt
++++ b/src/contrib/CMakeLists.txt
+@@ -3,6 +3,8 @@ project(contrib)
+ ####################################
+ # create library target
+ ####################################
++add_subdirectory(include)
++
+ if (LUCENE_BUILD_SHARED)
+   add_library(lucene++-contrib SHARED)
+ else()
+@@ -92,4 +94,5 @@ install(TARGETS lucene++-contrib
+ install(
+   FILES ${contrib_headers}
+   LIBRARY DESTINATION "include/lucene++"
++  LIBRARY DESTINATION "src/contrib/include"
+   COMPONENT development-contrib)
+diff --git a/src/contrib/include/CMakeLists.txt b/src/contrib/include/CMakeLists.txt
+new file mode 100644
+index 00000000..b497dc4f
+--- /dev/null
++++ b/src/contrib/include/CMakeLists.txt
+@@ -0,0 +1,11 @@
++####################################
++# install headers
++####################################
++
++file(GLOB_RECURSE lucene_headers
++  "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
++)
++
++install(
++  FILES ${lucene_headers}
++  DESTINATION include/lucene++ )

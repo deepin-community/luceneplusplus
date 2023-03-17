@@ -1,0 +1,2 @@
+Tests: cmake-test
+Depends: @, @builddeps@, g++, build-essential, cmake

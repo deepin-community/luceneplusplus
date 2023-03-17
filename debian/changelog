@@ -1,5 +1,5 @@
-template-repository (1.0-1) unstable; urgency=medium
+lucene++ (3.0.8-deepin) stable; urgency=medium
 
-  * Initial release
+  * ['Rebuild  against by  current gcc 11.2']
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Deepin Packages Builder <packages@deepin.org>  Wed, 10 Aug 2022 21:09:49 +0800

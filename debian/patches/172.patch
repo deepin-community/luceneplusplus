@@ -1,0 +1,127 @@
+From 84163f732ece48126e70847943af1e276b5ee8f2 Mon Sep 17 00:00:00 2001
+From: p01arst0rm <polar@ever3st.com>
+Date: Thu, 20 May 2021 23:00:30 +0100
+Subject: [PATCH] small cmake fixes
+
+---
+ src/config/contrib/CMakeLists.txt |  4 ++--
+ src/config/core/CMakeLists.txt    |  2 +-
+ src/contrib/CMakeLists.txt        | 12 +++++-------
+ src/core/CMakeLists.txt           |  2 +-
+ src/test/CMakeLists.txt           | 16 ++++++----------
+ 5 files changed, 15 insertions(+), 21 deletions(-)
+
+diff --git a/src/config/contrib/CMakeLists.txt b/src/config/contrib/CMakeLists.txt
+index b4a4391c..6f1a264f 100644
+--- a/src/config/contrib/CMakeLists.txt
++++ b/src/config/contrib/CMakeLists.txt
+@@ -9,7 +9,7 @@ if(NOT WIN32)
+   install(
+     FILES
+       "${CMAKE_CURRENT_BINARY_DIR}/liblucene++-contrib.pc"
+-    DESTINATION "${LIB_DESTINATION}/pkgconfig")
++    DESTINATION {${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+ endif()
+ 
+ 
+@@ -31,4 +31,4 @@ install(
+   FILES
+     "${CMAKE_CURRENT_BINARY_DIR}/liblucene++-contribConfig.cmake"
+     "${CMAKE_CURRENT_BINARY_DIR}/liblucene++-contribConfigVersion.cmake"
+-  DESTINATION "${LIB_DESTINATION}/cmake/liblucene++-contrib")
++  DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/liblucene++-contrib")
+diff --git a/src/config/core/CMakeLists.txt b/src/config/core/CMakeLists.txt
+index 65376f55..e5691f54 100644
+--- a/src/config/core/CMakeLists.txt
++++ b/src/config/core/CMakeLists.txt
+@@ -31,4 +31,4 @@ install(
+   FILES
+     "${CMAKE_CURRENT_BINARY_DIR}/liblucene++Config.cmake"
+     "${CMAKE_CURRENT_BINARY_DIR}/liblucene++ConfigVersion.cmake"
+-  DESTINATION "${LIB_DESTINATION}/cmake/liblucene++")
++  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/liblucene++)
+diff --git a/src/contrib/CMakeLists.txt b/src/contrib/CMakeLists.txt
+index afeccb4e..f22feef3 100644
+--- a/src/contrib/CMakeLists.txt
++++ b/src/contrib/CMakeLists.txt
+@@ -27,9 +27,8 @@ file(GLOB_RECURSE contrib_sources
+   "snowball/libstemmer_c/runtime/*.c"
+ )
+ 
+-file(GLOB_RECURSE contrib_headers
+-  "${lucene++-lib_SOURCE_DIR}/include/*.h"
+-)
++file(GLOB_RECURSE contrib_headers 
++  "${lucene++-lib_SOURCE_DIR}/include/*.h")
+ 
+ 
+ 
+@@ -64,8 +63,7 @@ target_link_libraries(lucene++-contrib
+     Boost::system
+     Boost::thread
+     ZLIB::ZLIB
+-    lucene++::lucene++
+-)
++    lucene++::lucene++)
+ 
+ if(WIN32)
+     target_link_libraries(lucene++-contrib ws2_32)
+@@ -88,10 +86,10 @@ set_target_properties(lucene++-contrib
+ cotire(lucene++-contrib)
+ 
+ install(TARGETS lucene++-contrib
+-  DESTINATION "${LIB_DESTINATION}"
++  DESTINATION ${CMAKE_INSTALL_LIBDIR}
+   COMPONENT runtime)
+ 
+ install(
+   FILES ${contrib_headers}
+-  DESTINATION "include/lucene++"
++  LIBRARY DESTINATION "include/lucene++"
+   COMPONENT development-contrib)
+diff --git a/src/core/CMakeLists.txt b/src/core/CMakeLists.txt
+index c59c6bf9..690f3826 100644
+--- a/src/core/CMakeLists.txt
++++ b/src/core/CMakeLists.txt
+@@ -83,5 +83,5 @@ cotire(lucene++)
+ 
+ 
+ install(TARGETS lucene++
+-  DESTINATION "${LIB_DESTINATION}"
++  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+   COMPONENT runtime)
+diff --git a/src/test/CMakeLists.txt b/src/test/CMakeLists.txt
+index ca10b451..f0b9b7e6 100644
+--- a/src/test/CMakeLists.txt
++++ b/src/test/CMakeLists.txt
+@@ -1,12 +1,6 @@
+ project(tester)
+ 
+ 
+-####################################
+-# create test bin target
+-####################################
+-add_executable(lucene++-tester)
+-
+-
+ ####################################
+ # configure GTest
+ ####################################
+@@ -32,11 +26,13 @@ file(GLOB_RECURSE tester_sources
+   "util/*.cpp")
+ 
+ file(GLOB_RECURSE test_headers
+-    "${lucene++-tester_SOURCE_DIR}/include/*.h")
++  "${lucene++-tester_SOURCE_DIR}/include/*.h")
+ 
+-target_sources(lucene++-tester
+-  PRIVATE
+-    ${tester_sources})
++####################################
++# create test bin target
++####################################
++add_executable(lucene++-tester
++  ${tester_sources})
+ 
+ 
+ ####################################
