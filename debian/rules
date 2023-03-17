@@ -1,4 +1,34 @@
 #!/usr/bin/make -f
 
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
 %:
 	dh $@
+
+override_dh_auto_configure:
+	dh_auto_configure -- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+
+override_dh_auto_build-indep:
+	dh_auto_configure -- -DCMAKE_BUILD_TYPE=RelWithDebInfo -DENABLE_DOCS:BOOL=ON
+	dh_auto_build
+	dh_auto_build -- doc
+
+override_dh_install-indep:
+	dh_install -pliblucene++-doc usr/share/doc/lucene++-doc/* usr/share/doc/liblucene++-doc/
+	rm -rf debian/tmp/usr/share/doc/lucene++-doc/
+
+override_dh_auto_install:
+	dh_auto_install
+	rm -rf debian/tmp/usr/lib/*/libg*.a
+	rm -rf debian/tmp/usr/lib/*/pkgconfig/g*.pc
+	rm -rf debian/tmp/usr/lib/*/cmake/GTest
+	rm -rf debian/tmp/usr/include/g*
+
+ifeq ($(filter nocheck,$(DEB_BUILD_OPTIONS)),)
+override_dh_auto_test:
+	./obj-*/src/test/lucene++-tester || true
+endif
+
+override_dh_missing:
+	dh_missing --fail-missing

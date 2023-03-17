@@ -1,0 +1,2 @@
+version=3
+https://github.com/luceneplusplus/LucenePlusPlus/tags .*/rel_?(\d\S*)\.tar\.gz
