@@ -1,5 +1,225 @@
-lucene++ (3.0.8-deepin) stable; urgency=medium
+lucene++ (3.0.8-6) unstable; urgency=medium
 
-  * ['Rebuild  against by  current gcc 11.2']
+  [ Debian Janitor ]
+  * Update watch file format version to 4.
 
- -- Deepin Packages Builder <packages@deepin.org>  Wed, 10 Aug 2022 21:09:49 +0800
+  [ Gianfranco Costamagna ]
+  * Bump std-version to 4.6.2, no changes required
+  * Fix version.h installation.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Mon, 20 Feb 2023 07:34:36 +0100
+
+lucene++ (3.0.8-5) unstable; urgency=medium
+
+  * debian/patches/172.patch:
+  * debian/patches/173.patch:
+  * debian/patches/174.patch:
+    - cherry-pick upstream fixes to install contrib headers
+      thanks clay stan <claystan97@gmail.com> for the help
+      (Closes: #992483)
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Tue, 24 Aug 2021 19:17:47 +0200
+
+lucene++ (3.0.8-4) unstable; urgency=medium
+
+  * debian/patches/169.patch:
+    - upstream testsuite fix
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Mon, 08 Mar 2021 20:45:41 +0100
+
+lucene++ (3.0.8-3) unstable; urgency=medium
+
+  * Also install builddeps in debian/tests/control
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Tue, 05 Jan 2021 22:30:20 +0100
+
+lucene++ (3.0.8-2) unstable; urgency=medium
+
+  * Add zlib1g-dev new dependency
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Tue, 05 Jan 2021 10:12:21 +0100
+
+lucene++ (3.0.8-1) unstable; urgency=medium
+
+  * New upstream version 3.0.8
+  * Drop patch 0001-Fix-compilation-with-Boost-1.58.patch and afd772ba14954c8785ce17a376759ba9525f3315.patch, upstream
+  * Also install cmake helpers in libdir
+  * Drop useless stuff from installation, gtest is not meant to be installed
+  * Add patch to fix an upstream issue with Chinese locale
+  * Add upstream-proposed PR to fix a wrong contrib library creation due to a typo
+  * Add upstream-proposed patch to fix a bad substitution value for pkgconfig file
+  * Add upstream-proposed patch to fix various issues with cmake helpers and substitution files
+  * Refresh snowball disabled patch
+  * Drop pkgconfig file, use upstream-proposed pr instead
+  * Update series file
+  * Add autopkgtest trying to build a simple test main with cmake
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Mon, 04 Jan 2021 23:53:17 +0100
+
+lucene++ (3.0.7-15) unstable; urgency=medium
+
+  * Use a way that should be compatible with -A, -B, and full build,
+    working in Debian and Ubuntu
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Fri, 03 Jul 2020 18:10:41 +0200
+
+lucene++ (3.0.7-14) unstable; urgency=medium
+
+  * Do the full build also on arch: any.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Fri, 03 Jul 2020 14:35:32 +0200
+
+lucene++ (3.0.7-13) unstable; urgency=medium
+
+  * Refactor build to not fail anymore on arch:all
+  * Honour nocheck
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Fri, 03 Jul 2020 14:02:38 +0200
+
+lucene++ (3.0.7-12) unstable; urgency=medium
+
+  * Add python3 to build-deps to fix arch:all builds
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Fri, 03 Jul 2020 13:12:51 +0200
+
+lucene++ (3.0.7-11) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Bump debhelper from deprecated 9 to 12.
+    + debian/rules: Move --fail-missing argument to dh_missing.
+  * Set debhelper-compat version in Build-Depends.
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
+    Repository-Browse.
+  * Drop unnecessary dh arguments: --parallel
+
+  [ Gianfranco Costamagna ]
+  * Upload to sid
+  * std-version 4.5.0, compat level 13
+  * Add R^3: no
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Fri, 03 Jul 2020 12:32:58 +0200
+
+lucene++ (3.0.7-10) unstable; urgency=medium
+
+  * Run testsuite but do not fail.
+  * Run testsuite only on arch:any
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Fri, 24 Aug 2018 20:47:23 +0200
+
+lucene++ (3.0.7-9) unstable; urgency=medium
+
+  * Move VCS fields to salsa.d.o
+  * Bump std-version to 4.2.0.1, no changes required
+  * Use secure https link for copyright file
+  * Re-enable testsuite
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Thu, 23 Aug 2018 17:30:52 +0200
+
+lucene++ (3.0.7-8) unstable; urgency=medium
+
+  * Fix typo, preventing lucene++ from being upgraded.
+    (Closes: #794926), thanks Andreas Beckmann for the bug report!
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Sat, 08 Aug 2015 10:41:05 +0200
+
+lucene++ (3.0.7-7) unstable; urgency=medium
+
+  * Remove symbols file.
+    - It fails on mostly all archs, I'll evaluate again
+      the decision after the gcc-5 transition.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Thu, 06 Aug 2015 13:34:14 +0200
+
+lucene++ (3.0.7-6) unstable; urgency=medium
+
+  [ Iain Lane ]
+  * debian/patches/0001-Fix-compilation-with-Boost-1.58.patch: Cherry-pick
+    from upstream to fix compilation with boost 1.58.
+  * Update package names for GCC5 ABI break. (Closes: #794716)
+
+  [ Gianfranco Costamagna ]
+  * Add symbols files.
+  * Update my uid.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Thu, 06 Aug 2015 10:45:42 +0200
+
+lucene++ (3.0.7-5) unstable; urgency=medium
+
+  * Use DebWithRelInfo as CMAKE_BUILD_TYPE.
+  * Disable testsuite for now, it fails on too many archs.
+    - Filed test failures with stack traces upstream.
+
+ -- Gianfranco Costamagna <costamagnagianfranco@yahoo.it>  Mon, 20 Jul 2015 00:14:44 +0200
+
+lucene++ (3.0.7-4) unstable; urgency=medium
+
+  * d/p/afd772ba14954c8785ce17a376759ba9525f3315.patch:
+    - fix segfault when running testsuite
+  * d/rules:
+    - enable testsuite
+
+ -- Gianfranco Costamagna <costamagnagianfranco@yahoo.it>  Thu, 16 Jul 2015 18:15:04 +0200
+
+lucene++ (3.0.7-3) unstable; urgency=medium
+
+  * d/p/0001-Fix-packageconfig-path.patch, due to
+    an error in CMake the resulting pkg-config file was
+    wrong.
+  * d/rules: remove ENABLE_STANDARD_ALLOCATOR switch, unused since
+    the new version.
+
+ -- Gianfranco Costamagna <costamagnagianfranco@yahoo.it>  Tue, 28 Apr 2015 09:41:20 +0200
+
+lucene++ (3.0.7-2) unstable; urgency=low
+
+  * Upload to unstable
+
+ -- Gianfranco Costamagna <costamagnagianfranco@yahoo.it>  Sun, 26 Apr 2015 23:35:23 +0200
+
+lucene++ (3.0.7-1) experimental; urgency=medium
+
+  * New upstream release.
+  * d/copyright:
+    - Fix copyright issue (upstream issue #70)
+      move arabic and persian to BSD license.
+    - Remove unicode.LICENSE reference.
+    - Add gtest copyright information.
+  * d/rules: tweak to follow upstream html documentation move.
+  * d/patches: remove every patch, accepted upstream.
+  * d/unicode.LICENSE: remove, integrated upstream.
+  * d/watch, stop using githubredir.
+  * d/control: add VCS-* fields.
+
+ -- Gianfranco Costamagna <costamagnagianfranco@yahoo.it>  Fri, 30 Jan 2015 17:17:31 +0100
+
+lucene++ (3.0.6-4) unstable; urgency=medium
+
+  * Sigh, using embedded snowball, as per upstream suggestion on issue #71.
+    - I think I prefer the snowball/libstemmer to be fully included
+      with Lucene++. I vaguely remember making a few tweaks to it to
+      fix bugs and make more compatible with Lucene++.
+
+ -- Gianfranco Costamagna <costamagnagianfranco@yahoo.it>  Sat, 29 Nov 2014 18:13:51 +0100
+
+lucene++ (3.0.6-3) unstable; urgency=medium
+
+  * Do not symlink jquery from doxygen, this will result in a
+    broken documentation. cfr: 736360.
+    - Drop libjs-jquery and dh-linktree from b-d.
+
+ -- Gianfranco Costamagna <costamagnagianfranco@yahoo.it>  Thu, 30 Oct 2014 12:03:59 +0100
+
+lucene++ (3.0.6-2) unstable; urgency=medium
+
+  * debian/patches/fix-build-failure.patch
+    - trying to fix both hurd and kfreebsd-* build failures.
+  * Bump std-version to 3.9.6, no changes required.
+  * Fix some copyright entries.
+
+ -- Gianfranco Costamagna <costamagnagianfranco@yahoo.it>  Fri, 10 Oct 2014 19:25:22 +0200
+
+lucene++ (3.0.6-1) unstable; urgency=low
+
+  * Initial release (Closes: #750148).
+
+ -- Łukasz 'sil2100' Zemczak <lukasz.zemczak@ubuntu.com>  Mon, 16 Jun 2014 17:48:23 +0200

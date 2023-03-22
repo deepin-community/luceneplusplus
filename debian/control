@@ -1,7 +1,7 @@
 Source: lucene++
 Priority: optional
-Maintainer: Deepin Developer <deepin-dev@deepin.org>
-Uploaders: Deepin Packages Builder <packages@deepin.org>
+Maintainer: Łukasz 'sil2100' Zemczak <lukasz.zemczak@ubuntu.com>
+Uploaders: Gianfranco Costamagna <locutusofborg@debian.org>
 Build-Depends: cmake,
                debhelper-compat (= 13),
                libboost-date-time-dev,
@@ -15,11 +15,11 @@ Build-Depends: cmake,
                python3
 Build-Depends-Indep: doxygen
 Rules-Requires-Root: no
-Standards-Version: 4.5.0
+Standards-Version: 4.6.2
 Section: libs
 Homepage: https://github.com/luceneplusplus/LucenePlusPlus
-#Vcs-Git
-#Vcs-Browser
+Vcs-Git: https://salsa.debian.org/debian/luceneplusplus.git
+Vcs-Browser: https://salsa.debian.org/debian/luceneplusplus
 
 Package: liblucene++-dev
 Section: libdevel

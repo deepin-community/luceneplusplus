@@ -1,0 +1,12 @@
+Description: Make sure version.h goes in right place
+Author: Gianfranco Costamagna <locutusofborg@debian.org>
+Last-Update: 2023-02-20
+
+--- lucene++-3.0.8.orig/src/contrib/CMakeLists.txt
++++ lucene++-3.0.8/src/contrib/CMakeLists.txt
+@@ -94,5 +94,4 @@ install(TARGETS lucene++-contrib
+ install(
+   FILES ${contrib_headers}
+   DESTINATION "include/lucene++"
+-  DESTINATION "src/contrib/include"
+   COMPONENT development-contrib)
