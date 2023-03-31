@@ -1,3 +1,9 @@
+lucene++ (3.0.8-deepin1) unstable; urgency=medium
+
+  * update changelog.
+
+ -- LiChengGang <lichenggang@uniontech.com>  Fri, 31 Mar 2023 17:32:45 +0800
+
 lucene++ (3.0.8-6) unstable; urgency=medium
 
   [ Debian Janitor ]
