@@ -8,3 +8,4 @@
 173.patch
 174.patch
 fix-version-h-install.patch
+fix-crash-when-reading-corrupted-or-incompatible-index-files
