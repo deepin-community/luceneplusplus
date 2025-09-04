@@ -1,3 +1,9 @@
+lucene++ (3.0.8-deepin3) unstable; urgency=medium
+
+  * Fix dir entry enumeration failure caused by dir entry being deleted
+
+ -- wangrong <wangrong@uniontech.com>  Thu, 21 Aug 2025 10:35:23 +0800
+
 lucene++ (3.0.8-deepin2) unstable; urgency=medium
 
   * Fix crash when reading corrupted or incompatible Lucene index files
