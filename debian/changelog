@@ -1,3 +1,9 @@
+lucene++ (3.0.8-deepin4) unstable; urgency=medium
+
+  * Add cancel search
+
+ -- Zhang Sheng <zhangsheng@uniontech.com>  Wed, 17 Dec 2025 13:57:36 +0800
+
 lucene++ (3.0.8-deepin3) unstable; urgency=medium
 
   * Fix dir entry enumeration failure caused by dir entry being deleted
