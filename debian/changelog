@@ -1,3 +1,10 @@
+lucene++ (3.0.8-deepin6) unstable; urgency=medium
+
+  * Add null check for field number in FieldsReader::doc to prevent
+    crashes on corrupted index files with invalid field numbers.
+
+ -- Zhang Sheng <zhangsheng@uniontech.com>  Tue, 16 Jun 2026 17:04:14 +0800
+
 lucene++ (3.0.8-deepin5) unstable; urgency=medium
 
   * Add N-Gram analyzer components.

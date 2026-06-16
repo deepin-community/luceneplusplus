@@ -12,3 +12,4 @@ fix-crash-when-reading-corrupted-or-incompatible-index-files
 fix-file-enumeration-exception.patch
 feat-cancel-search.patch
 feat-add-ngram-components.patch
+fieldsreader-doc-null-check.patch
